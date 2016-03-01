@@ -58,9 +58,21 @@ var library = (function() {
 		return {
 			DateOfMonth: (function(){
 				return {
-					Numeral: function(){},
-					Ordinal: function(){},
-					DateDblDigit: function(){}
+					Numeral: function(){
+                        var date = new Date();
+                        var dateNumeral = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31",];
+                        return dateNumeral[date.getDate()-1]; 
+                    },
+					Ordinal: function(){
+                        var date = new Date();
+                        var dateOrder = ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th", "29th", "30th", "31st"];
+                        return dateOrder[date.getDate()-1];
+                    },
+					DateDblDigit: function(){
+                        var date = new Date();
+                        var monthDate = date.getDate();
+                        return monthDate <10 ? '0' + monthDate: '' + monthDate;
+                    }
 				}
 			})(),
 			MonthNumber: function(){
