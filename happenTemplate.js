@@ -68,10 +68,22 @@ var library = (function() {
                 var month = date.getMonth() +1;
                 return String(month);
             },
-			MonthNumberDblDigit: function(){},
-			AbrOfCurrentMonth: function(){},
-			CurrentMonth: function(){}
-		}
+			MonthNumberDblDigit: function(){
+                var date = new Date();
+                var month = date.getMonth()+1;
+                return month <10 ? '0' + month: '' + month;
+            },
+			AbrOfCurrentMonth: function(){
+              var date = new Date();
+              var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+              return monthNames[date.getMonth()];              
+            },
+			CurrentMonth: function(){
+                var date = new Date();
+                var monthNames = ["January", "Ferbruary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                return monthNames[date.getMonth()];
+            }
+        }
 	})(),
 	Year: (function(){
 		return {
