@@ -5,7 +5,7 @@ var library = (function() {
 		UnixTimestamp: function(){
             var date = new Date();
             var second = date.getTime();
-            return String(second)/1000;
+            return String(0,9)-1;
         },
 		UnixMillisecond: function(){
             var date = new Date();
@@ -24,14 +24,28 @@ var library = (function() {
                   return String(withSeconds);   
               },
 	   	    WithOutSeconds: function() {
-                  
+                var date = new Date();
+                var withOut = date.toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'});
+                return String(withOut);  
                }
 		  }
 		})(),
 		MDY: (function(){
 	  	  return {
-		    Numeral: function(){},
-			Name: function(){}
+		    Numeral: function(){
+                var date = new Date();
+                var month = date.getUTCMonth();
+                var day = date.getUTCDay();
+                var year = date.getUTCFullYear();
+                 return day + "/" + month + "/" + year;
+            },
+			Name: function(){
+                var date = new Date();
+                var month = ["January", "Ferbruary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][date.getMonth()];
+                var day = date.getUTCDay()-1;
+                var year = date.getUTCFullYear();
+                return month + " " + day  + ", " + year;
+            }
 		  }
 		  })(),
 		}
@@ -74,8 +88,8 @@ var library = (function() {
             },
 			TwelveHour: function() {
                 var date = new Date();
-                var hour = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
-                return hour[date.getHours()+0];                
+                var hour = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"];
+                return hour[date.getHours()-12];                
             },
 			AMPM: (function() {
                 
@@ -212,6 +226,12 @@ var library = (function() {
             }
 		}
 	})(),
-	Defaults: function(){}
+	Defaults: function(){
+        var date = new Date();
+        var month = date.getMonth()+1;
+        var day = date.getMonth();
+        var output = date.getFullYear() + '/' + (month < 10 ? '0' : '' ) + month + '/' +(day < 10 ? '0' : '') + day;
+        $("#daettimepicker-input").val(output + " 00:01:00")
+    }
   }
 })();
