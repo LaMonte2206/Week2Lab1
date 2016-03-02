@@ -3,7 +3,11 @@ var library = (function() {
 	TimeStamp: (function(){
    	  return {
 		UnixTimestamp: function(){},
-		UnixMillisecond: function(){}
+		UnixMillisecond: function(){
+            var date = new Date();
+            var millisecond = date.getTime();
+            return String(millisecond);
+        }
 	  }
 	})(),
 	Local: (function(){
@@ -24,21 +28,47 @@ var library = (function() {
 	})(),
 	Second: (function(){
 		return{
-			Second: function(){},
-			DblDigit: function(){}
+			Second: function(){
+                var date = new Date();
+                var second = date.getSeconds();
+                return String(second);
+            },
+			DblDigit: function(){
+                var date = new Date();
+                var second = date.getSeconds();
+                return second <10 ? '0' + second: '' + second;
+            }
 		}
 	})(),
 	Minute: (function(){
 		return{
-			Minute: function(){},
-			DblDigit: function(){}
+			Minute: function(){
+                var date = new Date();
+                var minute = date.getMinutes();
+                return String(minute);
+            },
+			DblDigit: function(){
+                var date = new Date();
+                var minute = date.getMinutes();
+                return minute <10 ? '0' + minute: '' + minute;
+                
+            }
 		}
 	})(),
 	Hour: (function(){
 		return {
-			TwentyFourHour: function() {},
-			TwelveHour: function() {},
+			TwentyFourHour: function() {
+                var date = new Date();
+                var hour = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];            
+                return hour[date.getHours()];
+            },
+			TwelveHour: function() {
+                var date = new Date();
+                var hour = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
+                return hour[date.getHours()+0];                
+            },
 			AMPM: (function() {
+                
 				return {
 					UpperCase: function(){},
 					LowerCase: function(){}
@@ -66,8 +96,7 @@ var library = (function() {
 			WeekOfYear: function(){
                 var date = new Date();
                 var weekYear = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31","32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52"];
-                return weekYear[date.getDate()+7];
-                
+                return weekYear[date.getDate()+6];
             }
 		}
 	})(),
