@@ -18,9 +18,13 @@ var library = (function() {
 	  return {
 		Time: (function() {
 		  return {
-	  	    WithSeconds: function(){},
+	  	    WithSeconds: function(){
+                var date = new Date();
+                  var withSeconds = date.toLocaleTimeString(); 
+                  return String(withSeconds);   
+              },
 	   	    WithOutSeconds: function() {
-                   
+                  
                }
 		  }
 		})(),
